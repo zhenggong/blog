@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_06_072242) do
+ActiveRecord::Schema.define(version: 2020_03_06_082108) do
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2020_03_06_072242) do
     t.datetime "updated_at", null: false
     t.string "password"
     t.string "password_digest"
+    t.string "token"
+    t.index ["token"], name: "index_users_on_token", unique: true
   end
 
 end
