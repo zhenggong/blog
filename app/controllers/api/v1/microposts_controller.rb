@@ -1,7 +1,9 @@
 module Api
     module V1
       class MicropostsController  < ApplicationController
+        include ActionController::HttpAuthentication::Token::ControllerMethods
         before_action :set_micropost, only: [:show, :update, :destroy]
+        before_action :authenticate
   
         def index
           microposts = Micropost.order(created_at: :desc)
@@ -43,6 +45,13 @@ module Api
         def micropost_params
           params.require(:micropost).permit(:content, :user_id)
         end
+
+        def authenticate
+          authenticate_or_request_with_http_token do |token,options|
+            auth_user = User.find_by(token: token)
+            auth_user != nil ? true : false
+          end
+    end
       end
     end
   end
