@@ -10,6 +10,7 @@ module Api
 
       def show
         render json: { status: 'SUCCESS', message: 'Loaded the user', data: @user }
+            @microposts = @user.microposts.paginate(page: params[:page])
       end
 
       def create
