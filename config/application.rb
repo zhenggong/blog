@@ -33,12 +33,12 @@ module Blog
     config.api_only = true
 
     # Permit cross origin
-    Rails.application.config.middleware.insert_before 0, Rack::Cors do
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
-        resource '*',
-          headers: :any,
-          methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      origins "http://localhost:8080/"
+      resource "*",
+      headers: :any,
+      methods: [:get, :post, :options, :head]
       end
     end
   end
