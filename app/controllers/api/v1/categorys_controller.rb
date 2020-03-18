@@ -43,7 +43,7 @@ module Api
         end
   
         def category_params
-          params.require(:category).permit(:content, :user_id)
+          params.require(:category).permit(:name, :user_id)
         end
 
         def authenticate
