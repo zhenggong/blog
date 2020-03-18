@@ -5,7 +5,7 @@ class LoginController < ApplicationController
     # ↓ここから
     login_user = User.find_by(name:params[:name])
     if login_user.authenticate(params[:password])
-      authinfo = {name: params[:name], token: login_user.token, expire:1234444567}
+      authinfo = {name: params[:name], token: login_user.token, expire:1234444567, user_id:login_user.id}
       render json: { status: 'SUCCESS', message: 'Loaded the micropost', data: authinfo }
     else
       render plain: 'no auth'
