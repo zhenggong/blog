@@ -3,11 +3,10 @@ module Api
       class UsermicropostsController  < ApplicationController
         include ActionController::HttpAuthentication::Token::ControllerMethods
         before_action :set_user
-        before_action :set_user_usermicropost
         before_action :authenticate
   
         def index
-          render json: { status: 'SUCCESS', message: 'Loaded microposts', data: @user.microposts.order(created_at: :desc) }
+          render json: { status: 'SUCCESS', message: 'Loaded microposts', data: @user.microposts.all }
         end
   
         def show
