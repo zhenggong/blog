@@ -24,6 +24,7 @@ gem 'puma', '~> 3.11'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'mongoid', '~> 6.4.0'
 gem 'rack-cors'
 gem 'bcrypt'
 

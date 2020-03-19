@@ -5,8 +5,9 @@ Rails.application.routes.draw do
         resources :usermicroposts
         resources :usercategorys
       end
-      resources :microposts
+      resources :microposts 
       resources :categorys
+      resources :categoryforms
       post 'login/login'
     end
   end
