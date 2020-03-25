@@ -4,7 +4,7 @@ module Api
         include ActionController::HttpAuthentication::Token::ControllerMethods
         before_action :set_micropost, only: [:show, :update, :destroy]
         before_action :authenticate
-  
+        #get url/categoryforms
         def index
           categoryforms = Categoryform.order(created_at: :desc)
           render json: { status: 'SUCCESS', message: 'Loaded microposts', data: categoryforms }
@@ -13,10 +13,10 @@ module Api
         def show
           render json: { status: 'SUCCESS', message: 'Loaded the micropost', data: @categoryform }
         end
-  
+        #post url/categoryforms
         def create
           categoryform = Categoryform.new(categoryform_params)
-          if categoryforms.save
+          if categoryform.save
             render json: { status: 'SUCCESS', data: categoryform }
           else
             render json: { status: 'ERROR', data: categoryform.errors }
@@ -27,7 +27,7 @@ module Api
           @categoryform.destroy
           render json: { status: 'SUCCESS', message: 'Deleted the micropost', data: @categoryform }
         end
-  
+        #get url/categoryforms
         def update
           if @categoryform.update(categoryform_params)
             render json: { status: 'SUCCESS', message: 'Updated the micropost', data: @categoryform }
@@ -37,13 +37,14 @@ module Api
         end
   
         private
-  
+        #get url/categoryforms/id
         def set_categoryform
           @categoryform = Categoryform.find(params[:id])
         end
-  
+        #post url/categoryforms
+        #TODO
         def categoryform_params
-          params.require(:categoryform).permit(:content, :user_id)
+          params.require(:categoryform).permit!
         end
 
         def authenticate
